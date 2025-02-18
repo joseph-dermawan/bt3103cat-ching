@@ -13,6 +13,11 @@ loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
 
+document.getElementById("calendar-btn").addEventListener("click", function() {
+  window.location.href = "../public/calendar.html"; // Adjust the path if necessary
+});
+
+
 const signUpForm = document.querySelector(".sign-up form");
 signUpForm.addEventListener("submit", async (e) => {
   e.preventDefault();

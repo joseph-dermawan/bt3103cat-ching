@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat-Ching Calendar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/calendar.css">
+</head>
+<body onload="initializeCalendar()">
+    <div class="container">
+        <!-- Large Date Display -->
+        <div class="date-header">
+            <div id="date-large"></div>
+            <div id="day-large"></div>
+        </div>
+
+        <!-- Smaller Selectors on the Left -->
+        <div class="controls">
+            <select id="monthSelector" onchange="updateCalendar()"></select>
+            <select id="yearSelector" onchange="updateCalendar()"></select>
+        </div>
+
+        <!-- Calendar Card -->
+        <div class="card">
+            <div class="front">
+                <div class="contentfront">
+                    <div class="month">
+                        <table id="calendarTable">
+                            <thead>
+                                <tr class="orangeTr">
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                    <th>Sun</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <div class="contentback">
+                    <div class="backcontainer">
+                        <p>Expenses made on each day should go here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/js/calendar.js"></script>
+</body>
+</html>

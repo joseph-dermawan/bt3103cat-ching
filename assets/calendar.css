@@ -1,0 +1,103 @@
+body {
+    background-color: #010712;
+    background: url("IMG_7070.JPG") no-repeat center center fixed;
+    background-size: cover;
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Large Date Display */
+.date-header {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#date-large {
+    font-size: 60px;
+    font-weight: bold;
+    color: #974747;
+}
+
+#day-large {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ae8282;
+    margin-top: 2px;
+}
+
+/* Selectors Positioned Below the Date, Left-Aligned */
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60vw; /* Same width as black box */
+    padding-left: 5px; /* Small padding for better alignment */
+    margin-bottom: 10px; /* Space before the black box */
+}
+
+.controls select {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+/* Black Box (Calendar) with Reduced Width */
+.card {
+    width: 60vw; /* Matches width of controls */
+    height: auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(35, 34, 39, 0.9);
+    padding: 20px;
+}
+
+.front, .back {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.back {
+    background-color: #232227;
+    transform: rotateY(180deg);
+}
+
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Calendar Table Styling */
+.month table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.month th, .month td {
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.month th {
+    background-color: #974747;
+    color: white;
+    font-weight: bold;
+}
+
+.month td {
+    background: #ECECE7;
+    cursor: pointer;
+}
+
+.month td:hover {
+    background: #E76642;
+    color: white;
+    transition: 0.3s ease;
+}
