@@ -1,8 +1,12 @@
+* {
+    cursor: url("../assets/pawprint.png") 16 16, auto !important;
+}
+
 body {
     background-color: #010712;
     background: url("IMG_7070.JPG") no-repeat center center fixed;
     background-size: cover;
-    height: 88vh;
+    height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,11 +17,13 @@ body {
 .date-header {
     text-align: center;
     margin-bottom: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #date-large {
     font-size: 60px;
     font-weight: bold;
+    letter-spacing: 0px;
     color: #974747;
 }
 
@@ -25,36 +31,38 @@ body {
     font-size: 40px;
     font-weight: bold;
     color: #ae8282;
+    letter-spacing: 2px;
     margin-top: 2px;
 }
 
-/* Selectors Positioned Below the Date, Left-Aligned */
-.controls {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 60vw; /* Same width as black box */
-    padding-left: 5px; /* Small padding for better alignment */
-    margin-bottom: 10px; /* Space before the black box */
-}
-
 .controls select {
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 5px;
+    padding: 5px 7px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 2px solid #974747;
+    background: #232227;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 5px;
 }
 
-/* Black Box (Calendar) with Reduced Width */
+.controls select:hover {
+    background: #974747;
+    color: white;
+}
+
+
 .card {
-    width: 60vw; /* Matches width of controls */
+    width: 60vw; 
     height: auto;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 1s ease;
-    cursor: pointer;
     border-radius: 10px;
     background-color: rgba(35, 34, 39, 0.9);
-    padding: 20px;
+    padding: 20px 20px 5px
 }
 
 .front, .back {
@@ -66,6 +74,7 @@ body {
 .back {
     background-color: #232227;
     transform: rotateY(180deg);
+    color: #fff
 }
 
 .flipped {
@@ -76,28 +85,43 @@ body {
 .month table {
     width: 100%;
     border-spacing: 10px;
+    table-layout: fixed;
+
 }
 
 .month th, .month td {
-    font-size: 16px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    width: 20px;
+    height: 20px;
     padding: 10px;
+    aspect-ratio: 1/1;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 6px;
+    box-sizing: border-box;
 }
 
 .month th {
-    background-color: #974747;
-    color: white;
-    font-weight: bold;
+    background: linear-gradient(20deg, #c75c5c, #5b2318);    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .month td {
-    background: #ECECE7;
-    cursor: pointer;
+    background: #f3f3f3;
+    color: #333;
+    font-weight: 1000;
 }
 
 .month td:hover {
-    background: #E76642;
+    background: #c75c5c;
     color: white;
     transition: 0.3s ease;
 }
+
+.month td:empty {
+    background: transparent;
+    pointer-events: none;
+}
+
