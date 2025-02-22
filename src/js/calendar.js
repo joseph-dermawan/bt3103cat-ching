@@ -1,86 +1,113 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".card").addEventListener("click", flip);
-    initializeCalendar();
-});
+    const calendarDays = document.querySelector(".calendar-grid");
+    const calendarHeader = document.querySelector(".calendar-header");
+    const dayHeaders = document.querySelector(".day-headers");
+    const monthSelector = document.getElementById("month-selector");
+    const yearSelector = document.getElementById("year-selector");
+    const calendarFlip = document.querySelector(".calendar-flip");
+    const flipBackButton = document.querySelector(".flip-back");
+    const expenseDetails = document.getElementById("expense-details");
 
-function flip() {
-    document.querySelector(".card").classList.toggle("flipped");
-}
+    let currentDate = new Date();
 
-function initializeCalendar() {
-    populateMonthAndYearSelectors();
-    updateCalendar();
-}
+    // Populate Month and Year Selectors
+    function populateSelectors() {
+        const months = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"];
 
-function populateMonthAndYearSelectors() {
-    const monthSelector = document.getElementById("monthSelector");
-    const yearSelector = document.getElementById("yearSelector");
+        // Populate months
+        monthSelector.innerHTML = "";
+        months.forEach((month, index) => {
+            const option = document.createElement("option");
+            option.value = index;
+            option.innerText = month;
+            if (index === currentDate.getMonth()) option.selected = true;
+            monthSelector.appendChild(option);
+        });
 
-    const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
-    for (let i = 0; i < months.length; i++) {
-        let option = document.createElement("option");
-        option.value = i;
-        option.textContent = months[i];
-        monthSelector.appendChild(option);
-    }
-
-    const currentYear = new Date().getFullYear();
-    for (let i = currentYear - 10; i <= currentYear + 10; i++) {
-        let option = document.createElement("option");
-        option.value = i;
-        option.textContent = i;
-        yearSelector.appendChild(option);
-    }
-
-    monthSelector.value = new Date().getMonth();
-    yearSelector.value = currentYear;
-}
-
-function updateCalendar() {
-    const monthSelector = document.getElementById("monthSelector");
-    const yearSelector = document.getElementById("yearSelector");
-    const calendarBody = document.querySelector("#calendarTable tbody");
-
-    let selectedMonth = parseInt(monthSelector.value);
-    let selectedYear = parseInt(yearSelector.value);
-
-    let firstDay = new Date(selectedYear, selectedMonth, 1).getDay();
-    let lastDate = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-
-    firstDay = firstDay === 0 ? 6 : firstDay - 1; // Adjust so Monday is first
-
-    calendarBody.innerHTML = "";
-    let row = document.createElement("tr");
-
-    for (let i = 0; i < firstDay; i++) {
-        let emptyCell = document.createElement("td");
-        row.appendChild(emptyCell);
-    }
-
-    for (let date = 1; date <= lastDate; date++) {
-        let cell = document.createElement("td");
-        cell.textContent = date;
-        row.appendChild(cell);
-
-        if ((firstDay + date) % 7 === 0 || date === lastDate) {
-            calendarBody.appendChild(row);
-            row = document.createElement("tr");
+        // Populate years (2000 - 2050)
+        yearSelector.innerHTML = "";
+        for (let year = 2000; year <= 2050; year++) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.innerText = year;
+            if (year === currentDate.getFullYear()) option.selected = true;
+            yearSelector.appendChild(option);
         }
     }
 
-    updateCurrentDateDisplay();
-}
+    // Generate Day Headers
+    function createDayHeaders() {
+        dayHeaders.innerHTML = "";
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        days.forEach(day => {
+            const header = document.createElement("div");
+            header.classList.add("day-header");
+            header.innerText = day;
+            dayHeaders.appendChild(header);
+        });
+    }
 
-function updateCurrentDateDisplay() {
-    let today = new Date();
-    let date = today.getDate();
-    let day = today.toLocaleDateString("en-US", { weekday: "long" });
-    let monthYear = today.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    // Generate Calendar Days
+    function generateCalendar() {
+        calendarDays.innerHTML = "";
+        const year = parseInt(yearSelector.value);
+        const month = parseInt(monthSelector.value);
+        currentDate.setFullYear(year);
+        currentDate.setMonth(month);
 
-    document.getElementById("date-large").textContent = `${date} ${monthYear}`;
-    document.getElementById("day-large").textContent = day;
-}
+        // Update Month Header
+        calendarHeader.innerText = `${monthSelector.options[monthSelector.selectedIndex].text} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay(); // Get weekday index (0=Sun, 6=Sat)
+        const totalDays = new Date(year, month + 1, 0).getDate(); // Get total days in month
+
+        // Today's Date Highlight
+        const today = new Date();
+        const todayDate = today.getDate();
+        const todayMonth = today.getMonth();
+        const todayYear = today.getFullYear();
+
+        // Create Empty Cells for Alignment
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement("div");
+            emptyCell.classList.add("empty");
+            calendarDays.appendChild(emptyCell);
+        }
+
+        // Create Actual Calendar Days
+        for (let day = 1; day <= totalDays; day++) {
+            const dayCell = document.createElement("div");
+            dayCell.classList.add("day");
+            dayCell.innerHTML = `<strong>${String(day).padStart(2, '0')}</strong>`;
+            dayCell.addEventListener("click", () => flipToExpenses(day));
+
+            // Highlight today's date
+            if (day === todayDate && month === todayMonth && year === todayYear) {
+                dayCell.classList.add("today");
+            }
+
+            calendarDays.appendChild(dayCell);
+        }
+    }
+
+    // Flip Calendar to Show Expenses
+    function flipToExpenses(day) {
+        expenseDetails.innerText = `Expenses for ${day} ${monthSelector.options[monthSelector.selectedIndex].text} ${yearSelector.value}`;
+        calendarFlip.classList.add("flipped");
+    }
+
+    // Flip Back to Calendar View
+    flipBackButton.addEventListener("click", () => {
+        calendarFlip.classList.remove("flipped");
+    });
+
+    // Change Month or Year
+    monthSelector.addEventListener("change", generateCalendar);
+    yearSelector.addEventListener("change", generateCalendar);
+
+    // Initialize
+    populateSelectors();
+    createDayHeaders();
+    generateCalendar();
+});

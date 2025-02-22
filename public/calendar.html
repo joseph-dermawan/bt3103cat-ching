@@ -3,56 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat-Ching Calendar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Monthly Expense Calendar</title>
     <link rel="stylesheet" href="../assets/calendar.css">
+    <script defer src="../src/js/calendar.js"></script>
 </head>
-<body onload="initializeCalendar()">
+<body>
     <div class="container">
-        <!-- Large Date Display -->
-        <div class="date-header">
-            <div id="date-large"></div>
-            <div id="day-large"></div>
-        </div>
+        <div class="calendar-container">
+            <div class="calendar-header">January 2025</div>
+            <div class="date-selector">
+                <select id="month-selector"></select>
+                <select id="year-selector"></select>
+            </div>
 
-        <!-- Smaller Selectors on the Left -->
-        <div class="controls">
-            <select id="monthSelector" onchange="updateCalendar()"></select>
-            <select id="yearSelector" onchange="updateCalendar()"></select>
-        </div>
-
-        <!-- Calendar Card -->
-        <div class="card">
-            <div class="front">
-                <div class="contentfront">
-                    <div class="month">
-                        <table id="calendarTable">
-                            <thead>
-                                <tr class="orangeTr">
-                                    <th>Mon</th>
-                                    <th>Tue</th>
-                                    <th>Wed</th>
-                                    <th>Thu</th>
-                                    <th>Fri</th>
-                                    <th>Sat</th>
-                                    <th>Sun</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+            <!-- Flipping Calendar Effect -->
+            <div class="calendar-flip">
+                <div class="calendar front">
+                    <div class="day-headers"></div> <!-- Day Headers -->
+                    <div class="calendar-grid"></div>
+                </div>
+                <div class="calendar back">
+                    <div class="expenses-view">
+                        <h3>Daily Expenses</h3>
+                        <p id="expense-details">Click a date to view expenses.</p>
+                        <button class="flip-back">Back to Calendar</button>
                     </div>
                 </div>
             </div>
-            <div class="back">
-                <div class="contentback">
-                    <div class="backcontainer">
-                        <p>Expenses made on each day should go here</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- Sidebar for Notes and Total Amount Spent -->
+        <div class="sidebar">
+            <div class="section">
+                <h3>Notes</h3>
+                <textarea id="notes" placeholder="Write your notes here..."></textarea>
+            </div>
+            <div class="section">
+                <h3>Total Spent</h3>
+                <p id="total-spent">$0.00</p>
             </div>
         </div>
     </div>
-
-    <script src="../src/js/calendar.js"></script>
 </body>
 </html>

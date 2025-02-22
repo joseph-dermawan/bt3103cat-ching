@@ -1,127 +1,237 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rubik:wght@300..900&family=Monomakh&display=swap');
+
+/* Global Styles */
 * {
-    cursor: url("../assets/pawprint.png") 16 16, auto !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+    cursor: url('../assets/pawprint.png'), auto;
 }
 
+/* Unified Background */
 body {
-    background-color: #010712;
-    background: url("IMG_7070.JPG") no-repeat center center fixed;
-    background-size: cover;
-    height: 95vh;
+    background: #f5f2eb;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    min-height: 100vh;
+    padding: 40px;
 }
 
-/* Large Date Display */
-.date-header {
-    text-align: center;
-    margin-bottom: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#date-large {
-    font-size: 60px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    color: #974747;
-}
-
-#day-large {
-    font-size: 40px;
-    font-weight: bold;
-    color: #ae8282;
-    letter-spacing: 2px;
-    margin-top: 2px;
-}
-
-.controls select {
-    padding: 5px 7px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 8px;
-    border: 2px solid #974747;
-    background: #232227;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: 5px;
-}
-
-.controls select:hover {
-    background: #974747;
-    color: white;
-}
-
-
-.card {
-    width: 60vw; 
-    height: auto;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-    border-radius: 10px;
-    background-color: rgba(35, 34, 39, 0.9);
-    padding: 20px 20px 5px
-}
-
-.front, .back {
+/* Container Layout - Wider for Better UX */
+.container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
     width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+    max-width: 1400px;
 }
 
-.back {
-    background-color: #232227;
-    transform: rotateY(180deg);
-    color: #fff
-}
-
-.flipped {
-    transform: rotateY(-180deg);
-}
-
-/* Calendar Table Styling */
-.month table {
-    width: 100%;
-    border-spacing: 10px;
-    table-layout: fixed;
-
-}
-
-.month th, .month td {
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    width: 20px;
-    height: 20px;
-    padding: 10px;
-    aspect-ratio: 1/1;
+/* Calendar & Sidebar */
+.calendar-container, .sidebar {
+    background: #f5f2eb;
+    padding: 25px;
+    border-radius: 15px;
     text-align: center;
-    border-radius: 6px;
-    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.month th {
-    background: linear-gradient(20deg, #c75c5c, #5b2318);    color: white;
+/* Make the calendar wider */
+.calendar-container {
+    flex: 2; 
+    max-width: 850px;
+}
+
+/* Sidebar Section */
+.sidebar {
+    flex: 1;
+    max-width: 350px;
+}
+
+/* Calendar Header */
+.calendar-header {
+    font-size: 48px;
     font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: "Monomakh", serif;
+    text-align: left;
+    margin-bottom: 5px;
 }
 
-.month td {
-    background: #f3f3f3;
-    color: #333;
-    font-weight: 1000;
+/* Month & Year Selector */
+.date-selector {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.month td:hover {
-    background: #c75c5c;
-    color: white;
-    transition: 0.3s ease;
+.date-selector select {
+    font-size: 12px;
+    padding: 2px 1px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    transition: 0.3s;
 }
 
-.month td:empty {
-    background: transparent;
+.date-selector select:hover {
+    border-color: #ff9800;
+}
+
+/* Day Headers */
+.day-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+}
+
+.day-header {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0;
+    color: #222;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+/* Day Cells */
+.day {
+    padding: 25px;
+    border-radius: 10px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 200;
+    border: 1px solid #ddd;
+    background: #fdfbf6;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.day:hover {
+    background: rgb(245, 228, 205);
+    transform: translateY(-3px);
+}
+
+/* Today's Date Highlight */
+.today {
+    background: #ffebcc;
+    border: 2px solid #ff9800;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.4);
+}
+
+/* Empty Cells (Non-Dates) */
+.empty {
+    background: transparent !important;
+    border: none !important;
     pointer-events: none;
 }
 
+/* Sidebar Sections */
+.section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Notes Section */
+.section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    height: 130px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    resize: none;
+    background: #fdfbf6;
+    outline: none;
+    transition: 0.3s;
+}
+
+textarea:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+/* Total Spent Section */
+#total-spent {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff9800;
+    text-align: center;
+}
+
+/* Flip Animation for Calendar */
+.calendar-flip {
+    position: relative;
+    width: 100%;
+    height: auto;
+    perspective: 1000px;
+}
+
+.calendar {
+    width: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+}
+
+.calendar.front {
+    transform: rotateY(0deg);
+}
+
+.calendar.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    transform: rotateY(180deg);
+}
+
+/* Flipped State */
+.calendar-flip.flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.calendar-flip.flipped .back {
+    transform: rotateY(0deg);
+}
+
+/* Flip Back Button */
+.flip-back {
+    margin-top: 20px;
+    padding: 8px 16px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.flip-back:hover {
+    background: #e68900;
+}
