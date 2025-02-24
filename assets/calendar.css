@@ -1,18 +1,19 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rubik:wght@300..900&family=Monomakh&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rubik:wght@300..900&family=Monomakh&family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 /* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; 
+    font-family: 'Epilogue', sans-serif; 
     cursor: url('../assets/pawprint.png'), auto;
 }
 
 /* Unified Background */
 body {
-    background: #f5f2eb;
+    background: #e9f1fe;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,11 +54,12 @@ body {
 
 /* Calendar Header */
 .calendar-header {
+    background: #cfd8e3;
     font-size: 48px;
     font-weight: 600;
-    font-family: "Monomakh", serif;
+    font-family: "Epilogue", serif;
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 /* Month & Year Selector */
@@ -71,7 +73,7 @@ body {
 
 .date-selector select {
     font-size: 12px;
-    padding: 2px 1px;
+    padding: 3px 2px;
     border-radius: 6px;
     border: 1px solid #ccc;
     background: #fff;
@@ -109,7 +111,7 @@ body {
 .day {
     padding: 25px;
     border-radius: 10px;
-    min-height: 80px;
+    min-height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,6 +121,7 @@ body {
     border: 1px solid #ddd;
     background: #fdfbf6;
     transition: 0.3s ease-in-out;
+    position: relative;
 }
 
 /* Hover Effect */
@@ -179,12 +182,15 @@ textarea:focus {
 }
 
 /* Total Spent Section */
+/* Make total spent more visible */
 #total-spent {
     font-size: 28px;
     font-weight: bold;
     color: #ff9800;
     text-align: center;
+    margin-top: 10px;
 }
+
 
 /* Flip Animation for Calendar */
 .calendar-flip {
@@ -223,7 +229,7 @@ textarea:focus {
 
 /* Flip Back Button */
 .flip-back {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 8px 16px;
     background: #ff9800;
     color: white;
@@ -235,3 +241,81 @@ textarea:focus {
 .flip-back:hover {
     background: #e68900;
 }
+
+.floating-cat {
+    position: fixed;
+    width: 120px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1;
+    right: 3.5%
+}
+
+.left {
+    top: 10%;
+    left: 5%;
+}
+
+.right {
+    top: 48.5%;
+    right: 3.5%;
+}
+
+.expenses-view h3 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px; /* Reduce space below heading */
+}
+
+.expenses-view p {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #444;
+    margin-top: 0; /* Ensure it's close to the heading */
+    margin-bottom: 15px; /* Add spacing before the button */
+}
+
+/* Expense Indicator Dot */
+.expense-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+/* Expenses List Styling */
+.expense-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.expense-list li {
+    font-size: 16px;
+    padding: 8px 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Expense Amount */
+.expense-amount {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+/* No Expenses Message */
+.no-expenses {
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+}
+
