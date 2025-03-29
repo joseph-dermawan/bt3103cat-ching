@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Expense Calendar</title>
+    <link rel="stylesheet" href="../assets/calendar.css">
+    <script defer src="../src/js/calendar.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="calendar-container">
+            <div class="calendar-header">January 2025</div>
+            <div class="date-selector">
+                <select id="month-selector"></select>
+                <select id="year-selector"></select>
+            </div>
+
+            <!-- flipping calendar Effect -->
+            <div class="calendar-flip">
+                <div class="calendar front">
+                    <div class="day-headers"></div> <!-- day headers -->
+                    <div class="calendar-grid"></div>
+                </div>
+                <div class="calendar back">
+                    <div class="expenses-view">
+                        <h3>Daily Expenses</h3>
+                        <p id="expense-details">Click a date to view expenses.</p>
+                        <button class="flip-back">Back to Calendar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--sidebar for notes and total amount spent -->
+        <div class="sidebar">
+            <div class="section">
+                <h3>Notes</h3>
+                <textarea id="notes" placeholder="Write your notes here..."></textarea>
+            </div>
+            <div class="section">
+                <h3>Total Spent</h3>
+                <p id="total-spent">$0.00</p>
+            </div>
+            <img src="../assets/maneki-neko.png" alt="Cat Right" class="floating-cat right">
+        </div>
+    </div>
+</body>
+</html>

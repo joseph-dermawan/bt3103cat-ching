@@ -1,0 +1,321 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rubik:wght@300..900&family=Monomakh&family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Epilogue', sans-serif; 
+    cursor: url('../assets/pawprint.png'), auto;
+}
+
+/* Unified Background */
+body {
+    background: #e9f1fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+}
+
+/* Container Layout - Wider for Better UX */
+.container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Calendar & Sidebar */
+.calendar-container, .sidebar {
+    background: #f5f2eb;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the calendar wider */
+.calendar-container {
+    flex: 2; 
+    max-width: 850px;
+}
+
+/* Sidebar Section */
+.sidebar {
+    flex: 1;
+    max-width: 350px;
+}
+
+/* Calendar Header */
+.calendar-header {
+    background: #cfd8e3;
+    font-size: 48px;
+    font-weight: 600;
+    font-family: "Epilogue", serif;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Month & Year Selector */
+.date-selector {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-selector select {
+    font-size: 12px;
+    padding: 3px 2px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.date-selector select:hover {
+    border-color: #ff9800;
+}
+
+/* Day Headers */
+.day-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+}
+
+.day-header {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0;
+    color: #222;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+/* Day Cells */
+.day {
+    padding: 25px;
+    border-radius: 10px;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 200;
+    border: 1px solid #ddd;
+    background: #fdfbf6;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Hover Effect */
+.day:hover {
+    background: rgb(245, 228, 205);
+    transform: translateY(-3px);
+}
+
+/* Today's Date Highlight */
+.today {
+    background: #ffebcc;
+    border: 2px solid #ff9800;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.4);
+}
+
+/* Empty Cells (Non-Dates) */
+.empty {
+    background: transparent !important;
+    border: none !important;
+    pointer-events: none;
+}
+
+/* Sidebar Sections */
+.section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Notes Section */
+.section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    height: 130px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    resize: none;
+    background: #fdfbf6;
+    outline: none;
+    transition: 0.3s;
+}
+
+textarea:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+/* Total Spent Section */
+/* Make total spent more visible */
+#total-spent {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff9800;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* Flip Animation for Calendar */
+.calendar-flip {
+    position: relative;
+    width: 100%;
+    height: auto;
+    perspective: 1000px;
+}
+
+.calendar {
+    width: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+}
+
+.calendar.front {
+    transform: rotateY(0deg);
+}
+
+.calendar.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    transform: rotateY(180deg);
+}
+
+/* Flipped State */
+.calendar-flip.flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.calendar-flip.flipped .back {
+    transform: rotateY(0deg);
+}
+
+/* Flip Back Button */
+.flip-back {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.flip-back:hover {
+    background: #e68900;
+}
+
+.floating-cat {
+    position: fixed;
+    width: 120px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1;
+    right: 3.5%
+}
+
+.left {
+    top: 10%;
+    left: 5%;
+}
+
+.right {
+    top: 48.5%;
+    right: 3.5%;
+}
+
+.expenses-view h3 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px; /* Reduce space below heading */
+}
+
+.expenses-view p {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #444;
+    margin-top: 0; /* Ensure it's close to the heading */
+    margin-bottom: 15px; /* Add spacing before the button */
+}
+
+/* Expense Indicator Dot */
+.expense-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+/* Expenses List Styling */
+.expense-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.expense-list li {
+    font-size: 16px;
+    padding: 8px 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Expense Amount */
+.expense-amount {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+/* No Expenses Message */
+.no-expenses {
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+}
+
